@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Typecheck on save",
+      "trigger": "PostFileSave",
+      "description": "Runs the TypeScript compiler in no-emit mode after saving a .ts or .tsx file.",
+      "matcher": "\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "npx tsc --noEmit",
+        "timeout": 120
+      }
+    }
+  ]
+}

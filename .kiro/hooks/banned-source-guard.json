@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Banned source guard",
+      "trigger": "PostFileSave",
+      "description": "Fails if a banned data source or web3 import appears in app, lib, or components.",
+      "matcher": "\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "grep -rnE \"vxtwitter|bsc-dataseed1|check-by-addresses|etherscan\\.io/api|api\\.bscscan|from ['\\\"](ethers|viem|web3)\" app lib components && { echo 'Banned source or web3 import found (see .kiro/steering/tech.md)' >&2; exit 1; } || exit 0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": ".kiro ignore guard",
+      "trigger": "PostFileSave",
+      "description": "Fails if .gitignore ever lists .kiro.",
+      "matcher": "(^|/)\\.gitignore$",
+      "action": {
+        "type": "command",
+        "command": "grep -nE '^\\s*/?\\.kiro/?\\s*$' .gitignore && { echo '.kiro must never be gitignored' >&2; exit 1; } || exit 0"
+      }
+    }
+  ]
+}
